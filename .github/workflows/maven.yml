@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up Mysql 8.0
-    - uses: shogo82148/actions-setup-mysql@v1
+      uses: shogo82148/actions-setup-mysql@v1
       with:
         mysql-version: '8.0'
         mysql-database: ganic
