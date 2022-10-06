@@ -33,7 +33,8 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: |
-        mysql -uroot -h127.0.0.1 -e 'UPDATE mysql.user SET authentication_string =PASSWORD('root') WHERE User='root''
+        sudo service
+        mysql -uroot -h127.0.0.1 -e 'ALTER USER 'root'@'localhost' IDENTIFIED BY 'root''
         mysql -uroot -proot -h127.0.0.1 -e 'CREATE DATABASE ganic'
         mysql -uroot -proot -h127.0.0.1 ganic < ./ganic-dump.sql
         mvn -B package --file pom.xml
