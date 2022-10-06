@@ -18,15 +18,18 @@ public class Ingrediente {
 	private Integer paso;
 	private String detalle;
 
+	private String esApto;
+
 	public Ingrediente() {
 	}
 
-	public Ingrediente(Long idIngrediente, String nombre, Float precio, Integer paso, String detalle) {
+	public Ingrediente(Long idIngrediente, String nombre, Float precio, Integer paso, String detalle, String esApto) {
 		this.idIngrediente = idIngrediente;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.paso = paso;
 		this.detalle = detalle;
+		this.esApto = esApto;
 	}
 
 	public Long getIdIngrediente() {
@@ -67,6 +70,15 @@ public class Ingrediente {
 
 	public void setPaso(Integer paso) {
 		this.paso = paso;
+	}
+
+
+	public String getEsApto() {
+		return esApto;
+	}
+
+	public void setEsApto(String esApto) {
+		this.esApto = esApto;
 	}
 
 	@Override

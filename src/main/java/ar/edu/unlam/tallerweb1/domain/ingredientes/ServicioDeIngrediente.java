@@ -11,4 +11,7 @@ public interface ServicioDeIngrediente {
     Ingrediente obtenerIngredientePorId(Long id) throws IngredienteInvalidoException;
 
     List<Ingrediente> obtenerTodosLosIngredientes();
+
+    List<Ingrediente> obtenerIngredienteSiEsApto(String esApto);
+
 }
