@@ -372,7 +372,7 @@ LOCK TABLES `global_priv` WRITE;
 INSERT INTO `global_priv` (`Host`, `User`, `Priv`) VALUES ('localhost','mariadb.sys','{\"access\":0,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"\",\"account_locked\":true,\"password_last_changed\":0}'),
 ('localhost','root','{\"access\": 549755813887, \"plugin\": \"mysql_native_password\", \"authentication_string\": \"invalid\", \"auth_or\": [{}, {\"plugin\": \"unix_socket\"}], \"version_id\": 100902, \"password_last_changed\": 1664139573}'),
 ('localhost','mysql','{\"access\":18446744073709551615,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"invalid\",\"auth_or\":[{},{\"plugin\":\"unix_socket\"}]}'),
-('localhost','cris','{\"access\":549755812863,\"version_id\":100902,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*936456C3AB39225472022111C7BC33A2AB91F01A\",\"password_last_changed\":1664139670}');
+/*('localhost','cris','{\"access\":549755812863,\"version_id\":100902,\"plugin\":\"mysql_native_password\",\"authentication_string\":\"*936456C3AB39225472022111C7BC33A2AB91F01A\",\"password_last_changed\":1664139670}')*/;
 /*!40000 ALTER TABLE `global_priv` ENABLE KEYS */;
 UNLOCK TABLES;
 
