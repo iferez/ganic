@@ -33,7 +33,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: |
-        mysql -uroot -h127.0.0.1 -e 'ALTER USER 'root'@'localhost' IDENTIFIED BY 'root''
+#        mysql stop
+#        mysqld_safe --skip-grant-tables &
+#        mysql -uroot -proot -h127.0.0.1 -e
         mysql -uroot -proot -h127.0.0.1 -e 'CREATE DATABASE ganic'
         mysql -uroot -proot -h127.0.0.1 ganic < ./ganic-dump.sql
         mvn -B package --file pom.xml
