@@ -24,7 +24,6 @@ jobs:
       with:
         mysql-version: '8.0'
         root-password: root
-        run: mysql -uroot -h127.0.0.1 -e 'CREATE DATABASE ganic' < ./ganic-dump.sql
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
@@ -32,4 +31,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: |
+        mysql -uroot -h127.0.0.1 -e 'CREATE DATABASE ganic'
+        mysql -uroot -proot -h127.0.0.1 ganic < ./ganic-dump.sql
+        mvn -B package --file pom.xml
