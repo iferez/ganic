@@ -47,6 +47,36 @@ public class RepositorioSandwichTest extends SpringTest {
         assertThat(valorObtenido).hasSize(6);
 
     }
+    @Test @Rollback @Transactional
+    public  void queAlPedirUnaListaDeSandWichMeLosTraigaPorElValorDeSiEsAptoSolicitado(){
+        String vegano = "Vegano";
+
+        List<Sandwich> sandwichList= optenerLosSandwichPorPreferencia(vegano);
+
+        assertThat(sandwichList).hasSize(2);
+    }
+    @Test @Rollback @Transactional
+    public void queAlPedirUnaListaDeSandwichEnPromocionMeLosmuestre(){
+        Boolean estaEnPromocion= true;
+        Boolean estaEnPromocionFalse= false;
+        List<Sandwich> sandwichListSinPromocion=optenerSandwichPorCriterioDePromocion(estaEnPromocionFalse);
+        List<Sandwich> sandwichList=optenerSandwichPorCriterioDePromocion(estaEnPromocion);
+        compararLaListaDeSandwichTengaLosElementosEsperados(sandwichListSinPromocion,1);
+        compararLaListaDeSandwichTengaLosElementosEsperados(sandwichList,5);
+    }
+
+    private void compararLaListaDeSandwichTengaLosElementosEsperados(List<Sandwich> sandwichListSinPromocion, int i) {
+        assertThat(sandwichListSinPromocion).hasSize(i);
+    }
+
+    private List<Sandwich> optenerSandwichPorCriterioDePromocion(Boolean estaEnPromocion) {
+        return repositorioSandwich.optenerSandwichPorCriterioDePromocio(estaEnPromocion);
+    }
+
+    private List<Sandwich> optenerLosSandwichPorPreferencia(String preferencia) {
+      return  repositorioSandwich.optenerLosSandwichPorPreferencia(preferencia);
+    }
+
 
     private void entoncesComparoAmbasListasDeSandwiches(List<Sandwich> valorObtenido, List<Sandwich> valorEsperado) {
         assertThat(valorObtenido).isNotEmpty();

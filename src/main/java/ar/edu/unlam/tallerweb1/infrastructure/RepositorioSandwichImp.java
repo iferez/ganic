@@ -40,4 +40,20 @@ public class RepositorioSandwichImp implements RepositorioSandwich {
                 .setFetchMode("idSandwich", FetchMode.JOIN)
                 .list();
     }
+
+    @Override
+    public List<Sandwich> optenerLosSandwichPorPreferencia(String esApto) {
+        final Session session = this.sessionFactory.getCurrentSession();
+        return (List<Sandwich>) session.createCriteria(Sandwich.class)
+                .setFetchMode("idSandwich", FetchMode.JOIN)
+                .add(Restrictions.eq("esApto", esApto)).list();
+    }
+
+    @Override
+    public List<Sandwich> optenerSandwichPorCriterioDePromocio(Boolean estaEnPromocion) {
+        final Session session = this.sessionFactory.getCurrentSession();
+        return (List<Sandwich>) session.createCriteria(Sandwich.class)
+                .setFetchMode("idSandwich", FetchMode.JOIN)
+                .add(Restrictions.eq("enPromocion", estaEnPromocion)).list();
+    }
 }

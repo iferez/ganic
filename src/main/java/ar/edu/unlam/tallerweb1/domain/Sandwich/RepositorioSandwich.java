@@ -7,4 +7,8 @@ public interface RepositorioSandwich {
     Sandwich obtenerSandwichPorId(Long id);
 
     List<Sandwich> obtenerTodosLosSandwiches();
+
+    List<Sandwich> optenerLosSandwichPorPreferencia(String preferencia);
+
+    List<Sandwich> optenerSandwichPorCriterioDePromocio(Boolean estaEnPromocion);
 }
