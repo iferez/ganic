@@ -19,6 +19,7 @@
 -- Table structure for table `Ingrediente`
 --
 
+DROP TABLE IF EXISTS `Ingrediente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Ingrediente` (
@@ -29,15 +30,14 @@ CREATE TABLE `Ingrediente` (
   `paso` int(11) DEFAULT NULL,
   `precio` float DEFAULT NULL,
   PRIMARY KEY (`idIngrediente`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `Ingrediente`
 --
 
-INSERT INTO `Ingrediente` VALUES
-(5,'Pan lactal blanco','SinRestriccion','Pan clasico',1,150),
+INSERT INTO `Ingrediente` (`idIngrediente`, `detalle`, `esApto`, `nombre`, `paso`, `precio`) VALUES (5,'Pan lactal blanco','SinRestriccion','Pan clasico',1,150),
 (6,'Pan de mesa blanco','SinRestriccion','Pan flauta',1,120),
 (7,'Pan de campo blanco','SinRestriccion','Pan de campo',1,250),
 (8,'Pan lactal integral','SinRestriccion','Pan integral',1,280),
@@ -67,12 +67,13 @@ INSERT INTO `Ingrediente` VALUES
 -- Table structure for table `Pedido`
 --
 
+DROP TABLE IF EXISTS `Pedido`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Pedido` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,24 +85,24 @@ CREATE TABLE `Pedido` (
 -- Table structure for table `Sandwich`
 --
 
+DROP TABLE IF EXISTS `Sandwich`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Sandwich` (
-  `idSandwich` bigint(20) NOT NULL,
+  `idSandwich` bigint(20) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `enPromocion` bit(1) DEFAULT NULL,
   `esApto` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idSandwich`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=461 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `Sandwich`
 --
 
-INSERT INTO `Sandwich` VALUES
-(416,'Sandwich de pan integral con garbanzo cocido con aguacate y mayonesa','','Vegano','Sandwich de garbanzo'),
+INSERT INTO `Sandwich` (`idSandwich`, `descripcion`, `enPromocion`, `esApto`, `nombre`) VALUES (416,'Sandwich de pan integral con garbanzo cocido con aguacate y mayonesa','','Vegano','Sandwich de garbanzo'),
 (417,'Hamburguesa vegana de lenteja','','Vegano','Hamburguesa vegana de lenteja'),
 (418,'Hamburguesa de carne con salsa barbacoa','','sin_TACC','Hamburguesa de carne'),
 (419,'Sandwich de milanesa de carne con salsa barbacoa','','sin_TACC','Sandwich de milanesa'),
@@ -112,10 +113,11 @@ INSERT INTO `Sandwich` VALUES
 -- Table structure for table `Usuario`
 --
 
+DROP TABLE IF EXISTS `Usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Usuario` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `apellido` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `direccion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -123,71 +125,73 @@ CREATE TABLE `Usuario` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `preferencia` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `Usuario`
 --
 
+INSERT INTO `Usuario` (`id`, `apellido`, `direccion`, `email`, `nombre`, `password`, `preferencia`) VALUES (9,'Feldman','Peribebuy 3667','crisefeld@gmail.com','Cristian','123','SinRestriccion');
 
 --
 -- Table structure for table `compuesto_por`
 --
 
+DROP TABLE IF EXISTS `compuesto_por`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `compuesto_por` (
   `idSandwich` bigint(20) NOT NULL,
   `idIngrediente` bigint(20) NOT NULL,
+  `ingrediente_idIngrediente` bigint(20) NOT NULL,
   PRIMARY KEY (`idSandwich`,`idIngrediente`),
   KEY `FKh0fp8hwcwr091ii0cc99i2vhn` (`idIngrediente`),
   CONSTRAINT `FK4wdawm4jec9dattj0fdkhhetf` FOREIGN KEY (`idSandwich`) REFERENCES `Sandwich` (`idSandwich`),
   CONSTRAINT `FKh0fp8hwcwr091ii0cc99i2vhn` FOREIGN KEY (`idIngrediente`) REFERENCES `Ingrediente` (`idIngrediente`)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `compuesto_por`
 --
 
-INSERT INTO `compuesto_por` VALUES
-(416,18),
-(416,26),
-(416,29),
-(417,19),
-(417,25),
-(417,29),
-(418,20),
-(418,23),
-(418,27),
-(419,21),
-(419,22),
-(419,27),
-(420,7),
-(420,10),
-(420,16),
-(421,6),
-(421,9),
-(421,14);
+INSERT INTO `compuesto_por` (`idSandwich`, `idIngrediente`, `ingrediente_idIngrediente`) VALUES (416,18,0),
+(416,26,0),
+(416,29,0),
+(417,19,0),
+(417,25,0),
+(417,29,0),
+(418,20,0),
+(418,23,0),
+(418,27,0),
+(419,21,0),
+(419,22,0),
+(419,27,0),
+(420,7,0),
+(420,10,0),
+(420,16,0),
+(421,6,0),
+(421,9,0),
+(421,14,0);
 
 --
 -- Table structure for table `hibernate_sequence`
 --
 
+DROP TABLE IF EXISTS `hibernate_sequence`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `hibernate_sequence` (
   `next_val` bigint(20) DEFAULT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `hibernate_sequence`
 --
 
-INSERT INTO `hibernate_sequence` VALUES
-(16);
+INSERT INTO `hibernate_sequence` (`next_val`) VALUES (118);
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -198,4 +202,4 @@ INSERT INTO `hibernate_sequence` VALUES
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-20 22:08:50
+-- Dump completed on 2022-10-26 16:00:08
